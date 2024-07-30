@@ -3,6 +3,7 @@ import icon from './assets/icons/3dots.svg'
 function Card(props){
 
 const Songs = [
+    //A default data
  {id:0,  name:'Magnolia',         artist:'Laufey',              /*img:{MagnoliaG},       mp3:{Magnolia3}*/},
  {id:1,  name:'Glue Song',        artist:'Beabadoobee',         /*img:{GlueSongG},       mp3:{GlueSong3}*/},
  {id:2,  name:'Lovers Rock',      artist:'TV Girl',             /*img:{LoversRockG},     mp3:{LoversRock3}*/},
@@ -15,6 +16,7 @@ const Songs = [
  {id:9,  name:'For Lovers',       artist:'Lamp',                /*img:{ForLoversG},      mp3:{ForLovers3}*/},
  {id:10, name:'Hirogaru-Namida',  artist:'Lamp',                /*img:{HirogaruNamidaG}, mp3:{HirogaruNamida3}*/},
  {id:11, name:'Hatachi No Koi',   artist:'Sunkissed Lola',      /*img:{HatachiNoKoiG},   mp3:{HatachiNoKoi3}*/},
+    //It will goes on!!
 ]
 
     return(
