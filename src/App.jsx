@@ -5,8 +5,12 @@ function App() {
  
   return (
     <>
+    <div className='flex w-[100%]'>
     <Sidebar/>
+    <div className='flex w-[80%] mx-auto justify-center'>
     <Searchbar/>
+    </div>
+    </div>
     </>
   )
 }

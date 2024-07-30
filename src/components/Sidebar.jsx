@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import hamburger from './assets/Hamburger.svg';
-import song from "./assets/Song.svg";
-import Home from './assets/Home.svg';
-import Library from './assets/Library.svg';
-import Compass from './assets/Compass.svg';
-import Add2 from './assets/Add2.svg'
+import hamburger from './assets/icons/Hamburger.svg';
+import song from "./assets/icons/Song.svg";
+import Home from './assets/icons/Home.svg';
+import Library from './assets/icons/Library.svg';
+import Compass from './assets/icons/Compass.svg';
+import Add2 from './assets/icons/Add2.svg'
 
 function Sidebar() {
     const [show, setShow] = useState(true);
@@ -17,7 +17,7 @@ function Sidebar() {
     ];
 
     return (
-        <aside className={`h-screen ${show ? 'w-72' : 'w-20'} bg-primary flex transition-all ${!show? 'duration-00':'duration-150'}`}>
+        <aside className={`h-screen ${show ? 'w-72' : 'w-20'} bg-primary flex transition-all ${!show? 'duration-00':'duration-150'} `}>
             <div className={`h-screen ${show ? 'w-[100%]' : ''} flex flex-col p-5 pt-8`}>
 
                 {/* Header with hamburger button and logo */}
