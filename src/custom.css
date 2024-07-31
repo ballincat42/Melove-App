@@ -1,3 +1,12 @@
 *{
     font-family: Roboto;
 }
+#scrollbar{
+    scrollbar-color: rgb(255, 255, 255,0.35) rgb(255, 255, 255,0.1);
+    scroll-behavior: smooth;
+    scroll-snap-type: mandatory;
+}
+ @font-face {
+    font-family: Roboto;
+    src: url('components/assets/Roboto.ttf');
+ }

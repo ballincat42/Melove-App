@@ -53,7 +53,7 @@ function Sidebar() {
 
                 <button className={`flex items-center justify-center mt-5 bg-hover rounded-md gap-2 text-md font-medium ${!show && 'hidden'} py-2 hover:bg-hover2 duration-150`}><img src={Add2} alt="" /> New Playlist</button>
 
-                <p className={`font-medium text-base absolute bottom-5 left-10 ${!show? 'hidden':''} duration-1000`}>Created by Abriel The Great</p>
+       
             </div>
         </aside>
     );

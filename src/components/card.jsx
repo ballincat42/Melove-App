@@ -21,12 +21,12 @@ const Songs = [
 
     return(
         <>
-            <div className="flex flex-col p-1 cursor-pointer hover:text-primary rounded-sm border-[2px] duration-150 border-[rgb(255,255,255,0)] hover:border-secondary hover:border-opacity-100"> 
-                <img src={props.img} className='bg-slate-400 w-[210px] h-[160px]' alt="Album img" />
+            <div className="group flex flex-col hover:bg-hover p-4 justify-center rounded-md cursor-pointer h-[100%] duration-150"> 
+                <img src={props.img} className='bg-slate-400 w-[15rem] h-[10rem] rounded-md' alt="Album img" />
                 <div className="flex justify-between items-center gap-4 pt-3">
                     <div>
-                        <h3 className='font-medium text-[16px] text-[#FFFFFF]'>{props.name}</h3>
-                        <p className='text-[12px] text-[rgb(255,255,255,0.66)]'>{props.artist}</p>
+                        <h3 className='font-medium text-[1em] text-[#FFFFFF] duration-150 group-hover:text-secondary'>{props.name}</h3>
+                        <p className='text-[1em] text-[rgb(255,255,255,0.66)] duration-150 group-hover:text-secondary'>{props.artist}</p>
                     </div>
                     <span>
                         <img src={icon} className='w-[2px]' alt="" />
