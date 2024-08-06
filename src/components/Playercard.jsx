@@ -17,8 +17,8 @@ function Playercard(){
                 style={{backgroundImage:`url(${LikeTheMoviesG})`}}>
                 </div>
 
-                <div className='w-full flex justify-between pt-4 pl-5 pr-2'>
-                    <span> 
+                <div className='w-full flex justify-between pt-2 pl-5 pr-2'>
+                    <span className='flex justify-center items-center gap-2'> 
                         <p className='text-sm'>Magnolia</p>
                         <p className='text-xs text-trans'>Laufey</p>
                     </span>
@@ -32,11 +32,13 @@ function Playercard(){
                     </span>
                 </div>
 
-                <div className='flex justify-between w-full px-5 mt-2 cursor-pointer items-center'>
+                <div className='flex justify-between w-full px-5 mt-2 cursor-pointer'>
                     <span className='flex justify-center items-center w-[1.2rem]'>
                         <img src={Volume} alt="" />
                     </span>
-                        <p className='text-xs text-trans'>0.00 / 2.32</p>
+                    <div className='flex'>
+                        <p className='text-xs text-trans mt-auto'>0.00 / 2.32</p>
+                    </div>
                 </div>
 
                 <div className='px-5 w-full pt-3'>
