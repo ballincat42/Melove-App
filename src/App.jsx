@@ -7,7 +7,7 @@ function App() {
  
   return (
     <>
-    <div className='flex w-[100%]'>
+    <div className='flex w-[100%] h-screen bg-custom-gradient bg-no-repeat'>
      <Sidebar/>
      <div className='h-[100%] mx-auto flex flex-col gap-8 py-8'>
      <span className='gap-5 flex flex-col'>

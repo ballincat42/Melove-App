@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply bg-custom-gradient;
-}
 *{
     @apply text-white;
 }

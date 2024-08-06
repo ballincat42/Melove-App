@@ -5,6 +5,7 @@ import Home from './assets/icons/Home.svg';
 import Library from './assets/icons/Library.svg';
 import Compass from './assets/icons/Compass.svg';
 import Add2 from './assets/icons/Add2.svg'
+import x from './assets/icons/x.svg'
 
 function Sidebar() {
     const [show, setShow] = useState(true);
@@ -23,7 +24,7 @@ function Sidebar() {
                 {/* Header with hamburger button and logo */}
                 <div className='flex gap-8 justify-between duration-300'>
                     <button className={`h-[53.59px] duration-150`} onClick={() => setShow(!show)}>
-                        <img src={hamburger} className='w-9' alt="Hamburger" />
+                        <img src={`${!show ? hamburger : x}`} className='w-9 duration-150' alt="Hamburger" />
                     </button>
 
                     {/* Logo */}

@@ -34,11 +34,11 @@ function Picks(){
 
     return(
         <>
-        <div className='bg-primary flex  items-center rounded-md pr-10 pl-12 h-[24rem]'>
-         <div className=''>
+        <div className='bg-primary flex  items-center rounded-md pr-10 w-[48rem] pl-12 h-[25rem]'>
+         <div className='w-full'>
             <h1 className='text-3xl font-medium'>Quick pick</h1>
 
-            <div className='flex pt-4 gap-5 justify-between'>
+            <div className='flex pt-4 gap-5 justify-between w-full'>
                 <div className='flex flex-col w-[99%]'>
                     {Songs.slice(0,4).map((song) => (
                     <div className='flex gap-4 hover:bg-hover rounded-md cursor-pointer  pl-2 py-2 pr-0 duration-150' key={song.id}>
