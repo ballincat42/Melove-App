@@ -12,6 +12,7 @@ export default {
         'secondary': '#563CF6',
         'hover': 'rgb(255, 255, 255,0.1)',
         'hover2': 'rgb(255, 255, 255,0.25)',
+        'trans': 'rgb(255, 255, 255,0.5)',
       },
     },
   },

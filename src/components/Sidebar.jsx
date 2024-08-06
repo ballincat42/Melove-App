@@ -17,7 +17,7 @@ function Sidebar() {
     ];
 
     return (
-        <aside className={`h-screen ${show ? 'w-72' : 'w-20'} bg-primary flex transition-all ${!show? 'duration-00':'duration-150'} `}>
+        <aside className={`h-screen ${show ? 'w-72' : 'w-20'} z-10 bg-primary flex transition-all ${!show? 'duration-00':'duration-150'} `}>
             <div className={`h-screen ${show ? 'w-[100%]' : ''} flex flex-col p-5 pt-8`}>
 
                 {/* Header with hamburger button and logo */}
