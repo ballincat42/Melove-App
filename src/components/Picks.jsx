@@ -65,7 +65,7 @@ function Picks(){
                      <div className='flex gap-4 hover:bg-hover rounded-md cursor-pointer pl-2 py-2 pr-0 duration-150' key={song.id}>
                      <img src={song.img} className='w-[3.5rem] rounded-sm' alt="" />
                      <div className='flex justify-between w-full'>
-                         <div>
+                         <div className=''>
                              <p className='text-md font-normal'>{song.name}</p>
                              <p className='text-sm text-trans'>{song.artist}</p>
                          </div>

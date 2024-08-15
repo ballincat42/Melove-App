@@ -12,3 +12,10 @@
  #progress{
     -webkit-appearance: none;
  }
+ #progress::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 100%;
+    background-color: #ffffff;
+ }
