@@ -1,17 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import LikeTheMoviesG from './assets/pics/LikeTheMovies.svg';
-import PasilyoG from './assets/pics/Pasilyo.svg';
-import Pasilyo3 from './assets/mp3s/Pasilyo.mp3';
-import Love from './assets/icons/Love.svg';
-import Dots from './assets/icons/3dots.svg';
-import Volume from './assets/icons/Volume.svg';
-import Prev from './assets/icons/Prev.svg';
-import Play from './assets/icons/Play.svg';
-import Next from './assets/icons/Next.svg';
-import Pause from './assets/icons/Pause.svg';
 import './PlayerCard.css';
+import Play from './assets/icons/Play.svg';
+import Pause from './assets/icons/Pause.svg';
+import Prev from './assets/icons/Prev.svg';
+import Next from './assets/icons/Next.svg';
 
-function Playercard() {
+function Playercard({ song }) {
     const songRef = useRef(null);
     const ctrlImgRef = useRef(null);
     const progressRef = useRef(null);
@@ -20,38 +14,53 @@ function Playercard() {
     const [duration, setDuration] = useState(0);
 
     useEffect(() => {
-        const song = songRef.current;
+        if (!song) return; // No song selected
 
-        if (song) {
+        const audioElement = songRef.current;
+        if (audioElement) {
+            audioElement.src = song.mp3;
+            audioElement.load(); // Load the new audio source
+
             const updateProgress = () => {
-                setCurrentTime(song.currentTime);
-                setDuration(song.duration);
-                progressRef.current.value = song.currentTime;
+                setCurrentTime(audioElement.currentTime);
+                setDuration(audioElement.duration);
+                progressRef.current.value = audioElement.currentTime;
             };
 
-            song.addEventListener('loadedmetadata', updateProgress);
-            song.addEventListener('timeupdate', updateProgress);
+            audioElement.addEventListener('loadedmetadata', updateProgress);
+            audioElement.addEventListener('timeupdate', updateProgress);
+
+            // Autoplay after setting the new source
+            if (isPlaying) {
+                audioElement.play().catch(error => {
+                    console.log("Autoplay was prevented:", error);
+                });
+            }
 
             return () => {
-                song.removeEventListener('loadedmetadata', updateProgress);
-                song.removeEventListener('timeupdate', updateProgress);
+                audioElement.removeEventListener('loadedmetadata', updateProgress);
+                audioElement.removeEventListener('timeupdate', updateProgress);
             };
         }
-    }, []);
+    }, [song, isPlaying]); // Update when song or isPlaying changes
+
+    useEffect(() => {
+        const audioElement = songRef.current;
+        if (audioElement) {
+            if (isPlaying) {
+                audioElement.play().catch(error => {
+                    console.log("Playback failed:", error);
+                });
+                ctrlImgRef.current.src = Pause;
+            } else {
+                audioElement.pause();
+                ctrlImgRef.current.src = Play;
+            }
+        }
+    }, [isPlaying]); // Update play/pause state when `isPlaying` changes
 
     const playpause = () => {
-        const song = songRef.current;
-        const ctrlImg = ctrlImgRef.current;
-
-        if (isPlaying) {
-            song.pause();
-            ctrlImg.src = Play;
-        } else {
-            song.play();
-            ctrlImg.src = Pause;
-        }
-
-        setIsPlaying(!isPlaying);
+        setIsPlaying(prevIsPlaying => !prevIsPlaying);
     };
 
     const formatTime = (time) => {
@@ -61,38 +70,29 @@ function Playercard() {
     };
 
     const handleProgressChange = (e) => {
-        const song = songRef.current;
-        song.currentTime = e.target.value;
-        setCurrentTime(e.target.value);
+        const audioElement = songRef.current;
+        if (audioElement) {
+            audioElement.currentTime = e.target.value;
+            setCurrentTime(e.target.value);
+        }
     };
 
     return (
         <div className="w-[20rem] h-[25rem] bg-primary rounded-md px-3">
             <div className="flex flex-col mx-auto w-full pt-5 items-center h-full">
                 <div
-                    className="bg-cover w-[88%] h-[12rem] bg-center rounded-md"
-                    style={{ backgroundImage: `url(${PasilyoG})` }}
+                    className="bg-cover w-[88%] h-[13rem] bg-center rounded-md"
+                    style={{ backgroundImage: `url(${song ? song.img : ''})` }}
                 ></div>
 
                 <div className="w-full flex justify-between pt-2 pl-5 pr-2">
                     <span className="flex flex-col pt-1">
-                        <p className="text-sm">Pasilyo</p>
-                        <p className="text-xs text-trans">Sunkissed Lola</p>
-                    </span>
-                    <span className="flex">
-                        <span className="cursor-pointer w-[2rem] h-[2rem] hover:bg-hover rounded-full flex justify-center items-center">
-                            <img src={Love} alt="" />
-                        </span>
-                        <span className="cursor-pointer w-[2rem] h-[2rem] hover:bg-hover rounded-full flex justify-center items-center">
-                            <img src={Dots} className="h-[1rem]" alt="" />
-                        </span>
+                        <p className="text-sm font-medium">{song ? song.name : ''}</p>
+                        <p className="text-xs font-medium text-trans">{song ? song.artist : ''}</p>
                     </span>
                 </div>
 
-                <div className="flex justify-between w-full px-5 mt-2 cursor-pointer">
-                    <span className="flex justify-center items-center w-[1.2rem]">
-                        <img src={Volume} alt="" />
-                    </span>
+                <div className="flex justify-end w-full px-5 cursor-pointer">
                     <div className="flex">
                         <p className="text-xs text-trans mt-auto">
                             {formatTime(currentTime)} / {formatTime(duration)}
@@ -100,7 +100,7 @@ function Playercard() {
                     </div>
                 </div>
 
-                <div className="px-5 w-full pt-3">
+                <div className="px-5 w-full">
                     <input
                         type="range"
                         ref={progressRef}
@@ -112,22 +112,15 @@ function Playercard() {
                         onChange={handleProgressChange}
                     />
                     <div className="flex items-center justify-evenly pt-3">
-                        <audio id="song" ref={songRef}>
-                            <source
-                                src={Pasilyo3}
-                                type="audio/mpeg"
-                            />
-                        </audio>
-
+                        <audio id="song" ref={songRef} autoPlay />
                         <span className="flex items-center cursor-pointer justify-center w-[3rem] h-[3rem]">
                             <img src={Prev} alt="" />
                         </span>
                         <span
                             className="flex items-center cursor-pointer justify-center w-[3rem] h-[3rem]"
                             onClick={playpause}
-                            id="ctrl"
                         >
-                            <img src={Play} id="ctrlImg" ref={ctrlImgRef} alt="" />
+                            <img src={ctrlImgRef.current ? ctrlImgRef.current.src : Play} id="ctrlImg" ref={ctrlImgRef} alt="" />
                         </span>
                         <span className="flex items-center cursor-pointer justify-center w-[3rem] h-[3rem]">
                             <img src={Next} alt="" />

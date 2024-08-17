@@ -1,7 +1,7 @@
 *{
     font-family: Roboto;
 }
-#scrollbar{
+#scroll{
     scrollbar-color: rgb(255, 255, 255,0.35) rgb(255, 255, 255,0.1);
     scroll-behavior: smooth;
 }

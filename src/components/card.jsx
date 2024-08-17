@@ -39,33 +39,33 @@ function Card() {
     { id: 8, name: 'The Perfect Pair', artist: 'Beabadoobee', img: ThePerfectPairG, mp3:ThePerfectPair3 },
     { id: 9, name: 'For Lovers', artist: 'Lamp', img: ForLoversG, mp3:ForLovers3 },
     { id: 10, name: 'Hirogaru-Namida', artist: 'Lamp', img: HirogaruNamidaG, mp3:HirogaruNamida3 },
-    { id: 11, name: 'Hatachi No Koi', artist: 'Sunkissed Lola', img: HatachiNoKoiG, mp3:HatachiNoKoi3 },
+    { id: 11, name: 'Hatachi No Koi', artist: 'Lamp', img: HatachiNoKoiG, mp3:HatachiNoKoi3 },
   ]
-
+  const card = Songs.map((song) => (
+    <div key={song.id} className="group  flex flex-col hover:bg-hover p-4 justify-center rounded-md cursor-pointer duration-150">
+      <span 
+      className={`w-[12rem] h-[9rem] bg-cover bg-center group-hover:brightness-75 duration-150 rounded-[5px]`}
+      style={{ backgroundImage: `url(${song.img})` }}
+      >
+      </span> 
+      <div className="flex justify-between items-center gap-4 pt-3">
+        <div className=''>
+          <h3 className='font-medium text-md text-[#FFFFFF] duration-150 group-hover:text-secondary'>
+            {song.name}
+          </h3>
+          <p className='text-sm text-[rgb(255,255,255,0.66)] duration-150 group-hover:text-secondary'>
+            {song.artist}
+          </p>
+        </div>
+        <span>
+          <img src={icon} className='w-[2px]' alt="" />
+        </span>
+      </div>
+    </div>
+  ))
   return (
     <>
-      {Songs.map((song) => (
-        <div key={song.id} className="group  flex flex-col hover:bg-hover p-4 justify-center rounded-md cursor-pointer duration-150">
-          <span 
-          className={`w-[12rem] h-[9rem] bg-cover bg-center group-hover:brightness-75 duration-150 rounded-[5px]`}
-          style={{ backgroundImage: `url(${song.img})` }}
-          >
-          </span> 
-          <div className="flex justify-between items-center gap-4 pt-3">
-            <div className=''>
-              <h3 className='font-medium text-md text-[#FFFFFF] duration-150 group-hover:text-secondary'>
-                {song.name}
-              </h3>
-              <p className='text-sm text-[rgb(255,255,255,0.66)] duration-150 group-hover:text-secondary'>
-                {song.artist}
-              </p>
-            </div>
-            <span>
-              <img src={icon} className='w-[2px]' alt="" />
-            </span>
-          </div>
-        </div>
-      ))}
+      {card}
 </>
   )
 }
